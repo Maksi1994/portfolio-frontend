@@ -6,10 +6,16 @@ import { useSession, signOut } from "next-auth/react"
 
 export default function BackendHeader() {
    const router = useRouter();
-   const navigation = [{
-      label: 'General Info',
-      href: '/backend/general-info'
-   }];
+   const navigation = [
+      {
+         label: 'General Info',
+         href: '/backend/general-info'
+      },
+      {
+         label: 'Skills',
+         href: '/backend/skills'
+      }
+      ];
    const { data: session } = useSession();
 
    const onSingOut = () => {
@@ -29,11 +35,9 @@ export default function BackendHeader() {
               <Nav className="me-auto">
                  {
                     navigation.map(item => {
-                       return <Link href={item.href} key={item.href}>
-                             <Nav.Link active={item.exact ? router.pathname === item.href : router.pathname.startsWith(item.href)} key={item.href}>
-                              {item.label}
-                             </Nav.Link>
-                          </Link>
+                       return <Link key={item.label} href={item.href} passHref>
+                          <Nav.Link active={item.exact ? router.pathname === item.href : router.pathname.startsWith(item.href)}>{item.label}</Nav.Link>
+                       </Link>
                     })
                  }
 

@@ -1,0 +1,10 @@
+.dragZone {
+
+  &:hover {
+    cursor: grab;
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
+}
